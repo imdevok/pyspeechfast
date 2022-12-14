@@ -13,11 +13,11 @@ class Recognizer:
     """
     def __init__(self, *, 
         audio_file: str, 
-        model_path: str, 
+        model_name: str, 
         sample_rate: float=16000.0) -> None:
 
         self.audio_file = audio_file
-        self.model = Model(model_path=model_path)
+        self.model = Model(model_name=model_name)
         self._recognizer = KaldiRecognizer(self.model, sample_rate)
 
     def set_loglevel(self, loglevel: int):
