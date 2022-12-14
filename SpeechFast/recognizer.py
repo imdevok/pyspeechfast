@@ -1,4 +1,5 @@
 import wave
+import json
 
 from vosk import Model, KaldiRecognizer, SetLogLevel
 
@@ -12,11 +13,11 @@ class Recognizer:
     """
     def __init__(self, *, 
         audio_file: str, 
-        model_name: str, 
-        sample_rate: int=16000) -> None:
+        model_path: str, 
+        sample_rate: float=16000.0) -> None:
 
         self.audio_file = audio_file
-        self.model = Model(model_name)
+        self.model = Model(model_path=model_path)
         self._recognizer = KaldiRecognizer(self.model, sample_rate)
 
     def set_loglevel(self, loglevel: int):
@@ -39,6 +40,11 @@ class Recognizer:
         self.set_loglevel(0)
         self.set_words(True)
         self.set_partials_words(True)
+
+    @staticmethod
+    def format_result(json_result: str):
+        result = json.loads(json_result)
+        return result 
 
     def recognize(self) -> str:
         """Transcribes audio to text
