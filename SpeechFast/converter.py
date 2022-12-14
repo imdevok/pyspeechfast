@@ -1,11 +1,13 @@
 import asyncio
-from subprocess import PIPE
+
 
 class MediaConverter:
     @staticmethod
     async def execute_ffmpeg_command(cmd: str):
         cmd = f"ffmpeg -nostdin -loglevel quiet {cmd}"
-        return await asyncio.create_subprocess_shell(cmd, stdout=PIPE)
+
+        return await asyncio.create_subprocess_exec(cmd)
+            
 
     @staticmethod
     async def from_any_to_wav(input_file: str, output_file: str):
