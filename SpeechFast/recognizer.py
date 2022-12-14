@@ -12,12 +12,12 @@ class Recognizer:
     """
     def __init__(self, *, 
         audio_file: str, 
-        model_path: str, 
+        model_name: str, 
         sample_rate: int=16000) -> None:
 
         self.audio_file = audio_file
-        self.model = Model(model_path)
-        self.recognizer = KaldiRecognizer(self.model, sample_rate)
+        self.model = Model(model_name)
+        self._recognizer = KaldiRecognizer(self.model, sample_rate)
 
     def set_loglevel(self, loglevel: int):
         """Sets Vosk log level
@@ -28,10 +28,10 @@ class Recognizer:
         SetLogLevel(loglevel)
 
     def set_words(self, new_value: bool):
-        self.recognizer.SetWords(new_value)
+        self._recognizer.SetWords(new_value)
 
     def set_partials_words(self, new_value: bool):
-        self.recognizer.SetPartialWords(new_value)
+        self._recognizer.SetPartialWords(new_value)
 
     def set_default(self):
         """Sets default settings
@@ -52,9 +52,9 @@ class Recognizer:
             data = wf.readframes(4000)
             if len(data) == 0:
                 break
-            if self.recognizer.AcceptWaveform(data):
-                self.recognizer.Result()
+            if self._recognizer.AcceptWaveform(data):
+                self._recognizer.Result()
             else:
-                self.recognizer.PartialResult()
+                self._recognizer.PartialResult()
 
-        return self.recognizer.FinalResult()
+        return self._recognizer.FinalResult()
