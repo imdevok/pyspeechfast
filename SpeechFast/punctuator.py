@@ -1,7 +1,9 @@
+from typing import Literal
+
 import torch
 
 
-def make_punctuation_in_text(text: str, lang: str) -> str:
+def make_punctuation_in_text(text: str, lang: Literal["en", "ru"]) -> str:
     """Makes punctuation in input text
 
     Args:
