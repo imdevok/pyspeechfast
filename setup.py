@@ -7,7 +7,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '0.2.4'
+VERSION = '0.2.6'
 DESCRIPTION = 'Transcriber audio/video to text'
 LONG_DESCRIPTION = 'A package that allows to transcribe audio/video to text.'
 
@@ -21,7 +21,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
-    install_requires=['vosk', 'torch'],
+    install_requires=['vosk', 'torch', 'pyyaml'],
     keywords=['python', 'video', 'text', 'speech', 'audio', 'AI'],
     classifiers=[
         "Development Status :: 1 - Planning",
