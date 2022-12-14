@@ -1,1 +1,1 @@
-# SpeechFast - transcriber audio/video to text.
+# SpeechFast - Vosk wrapper for python and punctuation included. 
