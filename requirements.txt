@@ -13,3 +13,4 @@ urllib3==1.26.13
 vosk==0.3.44
 websockets==10.4
 pyyaml
+numpy==1.23.5
