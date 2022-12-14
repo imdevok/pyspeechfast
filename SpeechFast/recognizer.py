@@ -40,7 +40,7 @@ class Recognizer:
         self.set_words(True)
         self.set_partials_words(True)
 
-    def transcribe_to_text(self) -> str:
+    def recognize(self) -> str:
         """Transcribes audio to text
 
         Returns:
