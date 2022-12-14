@@ -6,7 +6,7 @@ class MediaConverter:
     async def execute_ffmpeg_command(cmd: str):
         cmd = f"ffmpeg -nostdin -loglevel quiet {cmd}"
 
-        return await asyncio.create_subprocess_exec([cmd])
+        return await asyncio.create_subprocess_shell(cmd)
             
 
     @staticmethod
@@ -16,5 +16,3 @@ class MediaConverter:
     @staticmethod
     async def from_mp4_to_wav(input_file: str, output_file: str):
         return await MediaConverter.execute_ffmpeg_command(f"-i {input_file} -vn -acodec copy {output_file}")
-
-
