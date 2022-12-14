@@ -15,4 +15,4 @@ class MediaConverter:
 
     @staticmethod
     async def from_mp4_to_wav(input_file: str, output_file: str):
-        await MediaConverter.execute_ffmpeg_command(f"-i {input_file} -vn -acodec copy {output_file}")
+        await MediaConverter.execute_ffmpeg_command(f"-i {input_file} -map 0:a:3 -c copy {output_file}")
